@@ -1,14 +1,14 @@
 import * as S from './styles'
-import { Menu2 as MenuIcon } from 'styled-icons/remix-fill'
-import {
-  ShoppingCart as ShoppingCartIcon,
-  Search as SearchIcon,
-  Close as CloseIcon
-} from 'styled-icons/material-outlined'
+
 import Logo from 'components/Logo'
 import { useState } from 'react'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
+
+import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart'
+import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
+import { Close as CloseIcon } from '@styled-icons/material-outlined/Close'
+import { Menu2 as MenuIcon } from '@styled-icons/remix-fill/Menu2'
 
 export type MenuProps = {
   username?: string

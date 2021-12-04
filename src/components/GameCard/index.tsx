@@ -1,11 +1,11 @@
 import Button from 'components/Button'
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
-import {
-  AddShoppingCart,
-  FavoriteBorder,
-  Favorite
-} from 'styled-icons/material-outlined'
+
 import * as S from './styles'
+
+import { AddShoppingCart } from '@styled-icons/material-outlined/AddShoppingCart'
+import { FavoriteBorder } from '@styled-icons/material-outlined/FavoriteBorder'
+import { Favorite } from '@styled-icons/material-outlined/Favorite'
 
 export type GameCardProps = {
   title: string

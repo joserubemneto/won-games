@@ -1,10 +1,9 @@
-import {
-  ArrowForwardIos as ArrowRight,
-  ArrowBackIos as ArrowLeft
-} from 'styled-icons/material-outlined'
 import GameCard, { GameCardProps } from 'components/GameCard'
 import Slider, { SliderSettings } from 'components/Slider'
 import * as S from './styles'
+
+import { ArrowForwardIos as ArrowRight } from '@styled-icons/material-outlined/ArrowForwardIos'
+import { ArrowBackIos as ArrowLeft } from '@styled-icons/material-outlined/ArrowBackIos'
 
 export type GameCardSliderProps = {
   items: GameCardProps[]
