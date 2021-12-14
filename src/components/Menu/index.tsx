@@ -4,6 +4,7 @@ import Logo from 'components/Logo'
 import { useState } from 'react'
 import Button from 'components/Button'
 import MediaMatch from 'components/MediaMatch'
+import Link from 'next/link'
 
 import { ShoppingCart as ShoppingCartIcon } from '@styled-icons/material-outlined/ShoppingCart'
 import { Search as SearchIcon } from '@styled-icons/material-outlined/Search'
@@ -45,7 +46,11 @@ const Menu = ({ username }: MenuProps) => {
         </S.IconWrapper>
 
         <MediaMatch greaterThan="medium">
-          {!username && <Button>Sign In</Button>}
+          {!username && (
+            <Link href="/sign-in" passHref>
+              <Button as="a">Sign in</Button>
+            </Link>
+          )}
         </MediaMatch>
       </S.MenuGroup>
 
@@ -66,13 +71,13 @@ const Menu = ({ username }: MenuProps) => {
 
         {!username && (
           <S.RegisterBox>
-            <Button fullWidth size="large">
-              Log in now
-            </Button>
+            <Link href="/sign-in" passHref>
+              <Button as="a">Log in now</Button>
+            </Link>
             <span>or</span>
-            <S.CreateAccount href="#" title="Sign in">
-              Sign Up
-            </S.CreateAccount>
+            <Link href="/sign-up" passHref>
+              <S.CreateAccount title="Sign in">Sign Up</S.CreateAccount>
+            </Link>
           </S.RegisterBox>
         )}
       </S.MenuFull>
