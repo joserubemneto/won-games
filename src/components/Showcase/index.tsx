@@ -6,11 +6,11 @@ import * as S from './styles'
 
 export type ShowcaseProps = {
   title?: string
-  hightlight?: HighlightProps
+  highlight?: HighlightProps
   games?: GameCardProps[]
 }
 
-const Showcase = ({ title, hightlight, games }: ShowcaseProps) => (
+const Showcase = ({ title, highlight, games }: ShowcaseProps) => (
   <S.Wrapper>
     {!!title && (
       <Heading lineLeft lineColor="secondary" color="white">
@@ -18,7 +18,7 @@ const Showcase = ({ title, hightlight, games }: ShowcaseProps) => (
       </Heading>
     )}
 
-    {!!hightlight && <Highlight {...hightlight} />}
+    {!!highlight && <Highlight {...highlight} />}
 
     {!!games && <GameCardSlider items={games} />}
   </S.Wrapper>

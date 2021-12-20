@@ -18,7 +18,7 @@ describe('<Showcase />', () => {
       <Showcase
         title={props.title}
         games={props.games}
-        hightlight={props.highlight}
+        highlight={props.highlight}
       />
     )
 
@@ -31,7 +31,7 @@ describe('<Showcase />', () => {
 
   it('should render without title', () => {
     renderWithTheme(
-      <Showcase games={props.games} hightlight={props.highlight} />
+      <Showcase games={props.games} highlight={props.highlight} />
     )
 
     expect(screen.getByRole('heading', { name: highlightMock.title }))
@@ -57,7 +57,7 @@ describe('<Showcase />', () => {
 
   it('should render without games', () => {
     renderWithTheme(
-      <Showcase title={props.title} hightlight={props.highlight} />
+      <Showcase title={props.title} highlight={props.highlight} />
     )
 
     expect(screen.getByRole('heading', { name: /most popular/i }))
