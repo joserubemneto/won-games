@@ -1,6 +1,6 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Email as EmailIcon } from '@styled-icons/material-outlined/Email'
+import { Email } from '@styled-icons/material-outlined'
 
 import { renderWithTheme } from 'utils/tests/helpers'
 
@@ -8,7 +8,7 @@ import TextField from '.'
 
 describe('<TextField />', () => {
   it('Renders with Label', () => {
-    renderWithTheme(<TextField label="Label" labelFor="Field" id="Field" />)
+    renderWithTheme(<TextField label="Label" name="Label" />)
 
     expect(screen.getByLabelText('Label')).toBeInTheDocument()
   })
@@ -19,28 +19,21 @@ describe('<TextField />', () => {
     expect(screen.queryByLabelText('Label')).not.toBeInTheDocument()
   })
 
-  it('Renders with Icon', () => {
-    renderWithTheme(
-      <TextField
-        label="Label"
-        labelFor="Field"
-        id="Field"
-        icon={<EmailIcon data-testid="icon" />}
-      />
-    )
-
-    expect(screen.getByTestId('icon')).toBeInTheDocument()
-  })
-
   it('Renders with placeholder', () => {
     renderWithTheme(<TextField placeholder="hey you" />)
 
     expect(screen.getByPlaceholderText('hey you')).toBeInTheDocument()
   })
 
+  it('Renders with Icon', () => {
+    renderWithTheme(<TextField icon={<Email data-testid="icon" />} />)
+
+    expect(screen.getByTestId('icon')).toBeInTheDocument()
+  })
+
   it('Renders with Icon on the right side', () => {
     renderWithTheme(
-      <TextField icon={<EmailIcon data-testid="icon" />} iconPosition="right" />
+      <TextField icon={<Email data-testid="icon" />} iconPosition="right" />
     )
 
     expect(screen.getByTestId('icon').parentElement).toHaveStyle({ order: 1 })
@@ -49,12 +42,7 @@ describe('<TextField />', () => {
   it('Changes its value when typing', async () => {
     const onInput = jest.fn()
     renderWithTheme(
-      <TextField
-        onInput={onInput}
-        label="TextField"
-        labelFor="TextField"
-        id="TextField"
-      />
+      <TextField onInput={onInput} label="TextField" name="TextField" />
     )
 
     const input = screen.getByRole('textbox')
@@ -74,8 +62,7 @@ describe('<TextField />', () => {
       <TextField
         onInput={onInput}
         label="TextField"
-        labelFor="TextField"
-        id="TextField"
+        name="TextField"
         disabled
       />
     )
@@ -93,27 +80,36 @@ describe('<TextField />', () => {
   })
 
   it('Renders with error', () => {
-    renderWithTheme(
+    const { container } = renderWithTheme(
       <TextField
-        icon={<EmailIcon data-testid="icon" />}
+        icon={<Email data-testid="icon" />}
         label="TextField"
-        labelFor="TextField"
         error="Error message"
       />
     )
 
     expect(screen.getByText('Error message')).toBeInTheDocument()
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
   it('Is accessible by tab', () => {
-    renderWithTheme(
-      <TextField label="TextField" labelFor="TextField" id="TextField" />
-    )
+    renderWithTheme(<TextField label="TextField" name="TextField" />)
 
     const input = screen.getByLabelText('TextField')
     expect(document.body).toHaveFocus()
 
     userEvent.tab()
     expect(input).toHaveFocus()
+  })
+
+  it('Is not accessible by tab when disabled', () => {
+    renderWithTheme(<TextField label="TextField" name="TextField" disabled />)
+
+    const input = screen.getByLabelText('TextField')
+    expect(document.body).toHaveFocus()
+
+    userEvent.tab()
+    expect(input).not.toHaveFocus()
   })
 })
