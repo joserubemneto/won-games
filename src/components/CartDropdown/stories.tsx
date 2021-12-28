@@ -1,21 +1,30 @@
-import CartIcon from 'components/CartIcon'
-import CartList from 'components/CartList'
-import Dropdown from 'components/Dropdown'
-import { GameItemProps } from 'components/GameItem'
+import { Story, Meta } from '@storybook/react/types-6-0'
+import CartDropdown, { CartDropdownProps } from '.'
 
-import * as S from './styles'
+import items from 'components/CartList/mock'
 
-export type CartDropdownProps = {
-  items: GameItemProps[]
-  total: string
-}
+export default {
+  title: 'CartDropdown',
+  component: CartDropdown,
+  args: {
+    items,
+    total: 'R$ 300,00'
+  },
+  parameters: {
+    backgrounds: {
+      default: 'won-dark'
+    }
+  }
+} as Meta
 
-const CartDropdown = ({ items, total }: CartDropdownProps) => (
-  <S.Wrapper>
-    <Dropdown title={<CartIcon quantity={items.length} />}>
-      <CartList items={items} total={total} hasButton />
-    </Dropdown>
-  </S.Wrapper>
+export const Default: Story<CartDropdownProps> = (args) => (
+  <div style={{ maxWidth: '98%', display: 'flex', justifyContent: 'flex-end' }}>
+    <CartDropdown {...args} />
+  </div>
 )
 
-export default CartDropdown
+export const Empty: Story<CartDropdownProps> = () => (
+  <div style={{ maxWidth: '98%', display: 'flex', justifyContent: 'flex-end' }}>
+    <CartDropdown />
+  </div>
+)
