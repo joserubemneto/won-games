@@ -28,13 +28,7 @@ export async function getStaticProps() {
         img: game.cover
           ? `http://localhost:1337/${game.cover?.url}`
           : 'img/auth-bg.jpg',
-        price:
-          game.price > 0
-            ? new Intl.NumberFormat('en', {
-                style: 'currency',
-                currency: 'USD'
-              }).format(game.price)
-            : 'FREE'
+        price: game.price
       })),
       filterItems: filterItemsMock
     }
