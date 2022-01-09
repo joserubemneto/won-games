@@ -20,6 +20,7 @@ export async function getStaticProps() {
       revalidate: 60,
       banners: data.banners.map((banner) => ({
         img: `http://localhost:1337${banner.image?.url}`,
+
         title: banner.title,
         subtitle: banner.subtitle,
         buttonLabel: banner.button?.label,
