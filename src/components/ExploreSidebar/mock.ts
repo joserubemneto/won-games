@@ -1,8 +1,10 @@
+import { FilterType } from '.'
+
 export default [
   {
     title: 'Price',
     name: 'price',
-    type: 'checkbox',
+    type: FilterType.CHECKBOX,
     fields: [
       {
         label: 'Under $50',
@@ -33,7 +35,7 @@ export default [
   {
     title: 'Sort by',
     name: 'sort_by',
-    type: 'radio',
+    type: FilterType.RADIO,
     fields: [
       {
         label: 'High to low',
@@ -46,9 +48,9 @@ export default [
     ]
   },
   {
-    title: 'System',
-    name: 'system',
-    type: 'checkbox',
+    title: 'Platforms',
+    name: 'platforms',
+    type: FilterType.CHECKBOX,
     fields: [
       {
         label: 'Windows',
@@ -67,7 +69,7 @@ export default [
   {
     title: 'Genre',
     name: 'genre',
-    type: 'checkbox',
+    type: FilterType.CHECKBOX,
     fields: [
       {
         label: 'Action',
